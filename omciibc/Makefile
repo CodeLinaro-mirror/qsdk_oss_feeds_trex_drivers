@@ -24,7 +24,15 @@ define Package/$(PKG_NAME)/description
   OMCIIBC IFP
 endef
 
+define Package/omciibc/config
+source "$(SOURCE)/Config.in"
+endef
+
 EXTRA_CFLAGS += -Wno-implicit-fallthrough -Wno-incompatible-pointer-types
+
+ifeq ("$(CONFIG_OMCIIBC_SWHOOK_ENABLE)", "y")
+EXTRA_CFLAGS += -DOMCIIBC_SWHOOK_ENABLE
+endif
 
 MAKE_FLAGS+= \
 	CHIPSET="QCA" \
