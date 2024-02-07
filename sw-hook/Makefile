@@ -36,8 +36,8 @@ MAKE_FLAGS+= \
 	     TOOLPREFIX=$(TARGET_CROSS)
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/swacl_if
-	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
+	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/sw-hook
+	$(CP) $(PKG_BUILD_DIR)/Module.symvers $(STAGING_DIR)/usr/include/sw-hook
 endef
 
 define Package/$(PKG_NAME)/install
