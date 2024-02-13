@@ -35,6 +35,17 @@ MAKE_FLAGS+= \
 	     OMCIIBC_DIR=$(PKG_BUILD_DIR) \
 	     TOOLPREFIX=$(TARGET_CROSS)
 
+define Build/Compile
+	$(KERNEL_MAKE)  \
+		M="$(PKG_BUILD_DIR)" \
+		EXTRA_CFLAGS="$(EXTRA_CFLAGS)" \
+		CHIPSET="QCA" \
+		SWHOOK_PLATFORM=qca \
+		CONFIG_SWHOOK_PLATFORM=$(SWHOOK_PLATFORM) \
+		OMCIIBC_DIR=$(PKG_BUILD_DIR) \
+		modules
+endef
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/swacl_if
 	$(INSTALL_DIR) $(STAGING_DIR)/usr/lib
