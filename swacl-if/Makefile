@@ -27,6 +27,7 @@ endef
 EXTRA_CFLAGS += -Wno-implicit-fallthrough
 
 MAKE_FLAGS+= \
+	     $(KERNEL_MAKE_FLAGS) \
 	     CHIPSET="QCA" \
 	     ARCH=$(LINUX_KARCH) \
 	     SWACL_IF_PLATFORM=qca \
@@ -34,6 +35,17 @@ MAKE_FLAGS+= \
 	     K_SRC=$(LINUX_DIR) \
 	     OMCIIBC_DIR=$(PKG_BUILD_DIR) \
 	     TOOLPREFIX=$(TARGET_CROSS)
+
+define Build/Compile
+	$(KERNEL_MAKE)  \
+		M="$(PKG_BUILD_DIR)" \
+		EXTRA_CFLAGS="$(EXTRA_CFLAGS)" \
+		CHIPSET="QCA" \
+		SWACL_IF_PLATFORM=qca \
+		CONFIG_SWACL_IF_PLATFORM=$(SWACL_IF_PLATFORM) \
+		OMCIIBC_DIR=$(PKG_BUILD_DIR) \
+		modules
+endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(STAGING_DIR)/usr/include/swacl_if
