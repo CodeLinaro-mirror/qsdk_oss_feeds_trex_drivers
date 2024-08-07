@@ -16,7 +16,7 @@ define Package/$(PKG_NAME)
   SECTION:=OPTIC_DRIVERS
   CATEGORY:=OptiCore Packages
   SUBMENU:=Drivers
-  DEPENDS:=@TARGET_ipq53xx||TARGET_ipq95xx
+  DEPENDS:=@TARGET_ipq53xx||TARGET_ipq95xx||TARGET_ipq54xx
   TITLE:=swhook
 endef
 
